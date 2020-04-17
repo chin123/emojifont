@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>emojifont</title>
 </head>
+<style>
+body {
+	padding: 1em;
+}
+</style>
 <script>
 var bitmap = [[[0,1,0],
             [1,0,1],
@@ -161,40 +166,50 @@ var bitmap = [[[0,1,0],
             [1,0,0],
             [1,1,1]],
           ];
-          var convert = function() {
-              var converted = ""
-              fg = document.getElementById('fg').value;
-              bg = document.getElementById('bg').value;
-              word = document.getElementById('word').value;
-	      console.log(fg);
-	      console.log(bg);
-	      console.log(word);
-              for (var i = 0; i < word.length; i++) {
-                  var index = word.charCodeAt(i) - 'a'.charCodeAt(0);
-		  if (index >= 0 && index < 26) {
-                      for (var j = 0; j < 5; j++) {
-                          for (var k = 0; k < 3; k++) {
-                              if (bitmap[index][j][k] == 1) {
-                                converted += fg;
-                              } else {
-                                converted += bg;
-                              }
-                          }
-                          converted += "<br>";
-                      }
-		  }
-                  converted += "<br>";
-              }
-              document.getElementById('result').innerHTML = converted;
-	      console.log("done");
-          };
+var convert = function() {
+    var converted = ""
+    fg = document.getElementById('fg').value;
+    bg = document.getElementById('bg').value;
+    word = document.getElementById('word').value;
+    console.log(fg);
+    console.log(bg);
+    console.log(word);
+    for (var i = 0; i < word.length; i++) {
+        var index = word.charCodeAt(i) - 'a'.charCodeAt(0);
+        if (index >= 0 && index < 26) {
+            for (var j = 0; j < 5; j++) {
+                for (var k = 0; k < 3; k++) {
+                    if (bitmap[index][j][k] == 1) {
+                      converted += fg;
+                    } else {
+                      converted += bg;
+                    }
+                }
+                converted += "\n<br>";
+            }
+        }
+        converted += "\n<br>";
+    }
+    document.getElementById('result').innerHTML = converted;
+    console.log("done");
+};
+var copytext = function() {
+    var result = document.getElementById('#result').textContent();
+    navigator.clipboard.writeText(result).then(function() {
+        console.log("copy success");
+    }, function() {
+        console.log("copy fail");
+    });
+}
 </script>
 
 <body>
-foreground: <input id="fg"> <br>
-background: <input id="bg"> <br>
-to convert: <input id="word"> <br>
-<button onclick="convert();">Convert</button> <br>
+foreground: <input id="fg"> <br><br>
+background: <input id="bg"> <br><br>
+to convert: <input id="word"> <br><br>
+<button onclick="convert();">Convert</button> <br><br>
+<button onclick="copytext();">Copy result</button> <br><br>
+Result:
 <div id="result"></div>
 </body>
 </html>
