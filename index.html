@@ -194,7 +194,7 @@ var convert = function() {
     console.log("done");
 };
 var copytext = function() {
-    var result = document.getElementById('#result').textContent();
+    var result = document.getElementById('result').textContent();
     navigator.clipboard.writeText(result).then(function() {
         console.log("copy success");
     }, function() {
