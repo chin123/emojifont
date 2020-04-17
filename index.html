@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <title>emojifont</title>
 </head>
-<style>
-body {
-	padding: 1em;
-}
-</style>
 <script>
 var bitmap = [[[0,1,0],
             [1,0,1],
@@ -204,11 +199,15 @@ var copytext = function() {
 </script>
 
 <body>
-foreground: <input id="fg"> <br><br>
-background: <input id="bg"> <br><br>
-to convert: <input id="word"> <br><br>
+<h2>Text to Emoji Font</h2>
+<p>
+Paste in any emoji as the foreground and background, and generate emoji text!
+</p>
+<label for="fg">Foreground:</label> <input id="fg" value="⬛"> <br><br>
+<label for="bg">Background:</label> <input id="bg" value="⬜"> <br><br>
+<label for="word">To Convert:</label> <input id="word"> <br><br>
 <button onclick="convert();">Convert</button> <br><br>
-<button onclick="copytext();">Copy result</button> <br><br>
+<button onclick="copytext();">Copy Result</button> <br><br>
 Result:
 <div id="result"></div>
 </body>
