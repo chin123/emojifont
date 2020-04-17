@@ -169,6 +169,7 @@ var convert = function() {
     console.log(fg);
     console.log(bg);
     console.log(word);
+    word = word.toLowerCase();
     for (var i = 0; i < word.length; i++) {
         var index = word.charCodeAt(i) - 'a'.charCodeAt(0);
         if (index >= 0 && index < 26) {
